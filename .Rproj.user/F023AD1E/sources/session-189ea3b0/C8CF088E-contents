@@ -1,0 +1,158 @@
+---
+title: "Updated Bayesian Ordinal Analysis"
+output: html_document
+format:
+  html: 
+    fig-format: svg
+date: "2025-04-21"
+---
+
+```{r setup, echo = FALSE, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(here)
+library(tidyverse)
+library(jtools)
+library(sjPlot)
+library(lme4)
+library(lmerTest)
+library(ordinal)
+library(bayesplot)
+
+
+td = read.csv(here("data", "ratings_tidy.csv"))
+
+```
+
+## **RQ 1:** Does learning explicitly about bilingualism impact novice-intermediate L2 learners’ attitudes towards bilingualism and language learning? 
+
+This one I don't think we can answer with the data (no pre/post design)
+
+## **RQ 2:** How do the attitudes towards bilingualism and language learning differ between students who have received explicit instruction about bilingualism and those who have not? 
+
+We have evidence that those with instruction answered more positively for 3 of 4 question types.
+
+
+#### Statistical Analysis 
+
+An Bayesian Ordinal regression fit in R with `brms` with default priors. Rating was predicted as a function of survey version (1 or 2) and question type (4 levels), with random intercepts for prompt and participant. 
+
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+td$version = as.factor(td$version)
+
+ord_mod_all = brms::brm(rating ~ version*question_type + (1 | prompt) + 
+                       (1 | participant_number),
+                     family = "cumulative",
+                     data = td, 
+                     file = here("data", "models", "ord_mod_all.rds"))
+```
+
+#### Results 
+
+See the figures below:
+
+Figure 1 shows the distributions of ratings in all 4 question types.
+Figure 2 is the posterior distribution of the ordinal model - the distributions represent plausible changes in log-odds for each question type and group. The negative estimate suggest that version 2 was more likely to have less favorable ratings for the most interested question [Median = -0.69; 95% HDI -1.03 - -0.33 ], semi-affected questions [Median = -0.52; 95% HDI -0.81 - -0.25 ] and the least affected questions [Median = -0.64; 95% HDI -0.97 - -0.30].
+There was no evidence that the directly affected questions were rated distinctly by the two groups [Median = 0.20; 95% HDI -0.11 - 0.52].
+
+
+```{r, fig_1, echo = FALSE, warning=FALSE, message=FALSE}
+rating_ver = td %>% 
+  group_by(version, question_type) %>% 
+  summarise(n_t = n())
+
+pct_df_preq_all = td %>%
+  group_by(version, rating, question_type) %>% 
+  summarise(n = n()) %>% 
+  left_join(rating_ver) %>% 
+  mutate(pct = n/n_t)
+
+# Modify the data
+pct_df_preq_all$question_type <- factor(pct_df_preq_all$question_type, levels = c("directly_affected_questions", "least_affected_questions", "most_interested_qs", "semi_affected_questions"), 
+                  labels = c("Directly affected questions", "Least affected questions", "Most important questions", "Semi-affected questions"))
+
+pct_df_preq_all$question_type_f = factor(pct_df_preq_all$question_type, levels=c('Most important questions', 'Directly affected questions','Semi-affected questions','Least affected questions'))
+
+
+pct_df_preq_all %>% 
+  filter(!is.na(question_type)) %>% 
+  ggplot(aes(y = pct, x = rating, fill = as.factor(version))) + 
+  geom_col(color = "black", position = "dodge") + 
+  scale_fill_manual(values = c("#71797E", "seagreen")) +
+  facet_grid(question_type_f~version) + theme_apa() + xlab("Rating choice") +
+  ylab("Percentage of Ratings") + 
+  theme(strip.text.y = element_text(angle = 0),
+        legend.position = "none")
+```
+
+```{r, fig_2, echo = FALSE, warning=FALSE, message=FALSE}
+posterior <- as.matrix(ord_mod_all)
+
+plot_title <- ggtitle("Posterior distributions",
+                      "with medians and 80% intervals")
+mcmc_areas(posterior,
+           pars = c("b_version2", "b_version2:question_typeleast_affected_questions", "b_version2:question_typemost_interested_qs", "b_version2:question_typesemi_affected_questions"),
+           prob = 0.8) + plot_title +
+  scale_y_discrete(limits = c("b_version2:question_typeleast_affected_questions",
+                                       "b_version2:question_typesemi_affected_questions",
+                                       "b_version2", "b_version2:question_typemost_interested_qs")) + theme_minimal()
+
+```
+
+
+## **RQ 3:** Does learning explicitly about bilingualism impact students differently based on proficiency level?
+
+It does not appear so - there is no evidence that class level impacted the size of the effect of having explicit instruction.
+
+
+#### Statistical Analysis 
+
+An Bayesian Ordinal regression fit in R with `brms` with default priors. Rating was predicted as a function of survey version (1 or 2) and current class (4 levels), with random intercepts for prompt and participant. 
+
+```{r, warning = FALSE, message=FALSE}
+
+td$current_class = as.factor(td$current_class)
+
+ord_mod_class = brms::brm(rating ~ current_class*version + (1 | prompt) + 
+                          (1 | participant_number),
+                        family = "cumulative",
+                        data = td, 
+                        file = here("data", "models", "ord_mod_class.rds"))
+```
+
+```{r, fig_3, echo = FALSE, warning = FALSE, message=FALSE}
+rating_ver_class = td %>% 
+  group_by(version, current_class) %>% 
+  summarise(n_t = n())
+
+pct_df_preq_all_class = td %>%
+  group_by(version, rating) %>% 
+  summarise(n = n()) %>% 
+  left_join(rating_ver_class) %>% 
+  mutate(pct = n/n_t)
+
+# Modify the data
+
+pct_df_preq_all_class %>% 
+  ggplot(aes(y = pct, x = rating, fill = as.factor(version))) + 
+  geom_col(color = "black", position = "dodge") + 
+  scale_fill_manual(values = c("#71797E", "seagreen")) +
+  facet_grid(current_class~version) + theme_apa() + xlab("Rating choice") +
+  ylab("Current Class") + 
+  theme(strip.text.y = element_text(angle = 0),
+        legend.position = "none")
+```
+
+
+```{r, fig_4, echo = FALSE, warning = FALSE, message=FALSE}
+posterior_o<- as.matrix(ord_mod_class)
+
+plot_title <- ggtitle("Posterior distributions",
+                      "with medians and 80% intervals")
+mcmc_areas(posterior_o,
+           pars = c("b_version", 
+                    "b_current_class2:version", "b_current_class3:version", "b_current_class4:version"),
+           prob = 0.8) + plot_title + theme_minimal()
+
+```
+
+

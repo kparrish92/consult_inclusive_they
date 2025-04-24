@@ -1,0 +1,41 @@
+library(ranger)
+## Classification forest with default settings
+ranger(Species ~ ., data = iris)
+
+## Prediction
+train.idx <- sample(nrow(iris), 2/3 * nrow(iris))
+iris.train <- iris[train.idx, ]
+iris.test <- iris[-train.idx, ]
+rg.iris <- ranger(Species ~ ., data = iris.train)
+pred.iris <- predict(rg.iris, data = iris.test)
+table(iris.test$Species, pred.iris$predictions)
+
+## Quantile regressi on forest
+rf <- ranger(mpg ~ ., mtcars[1:26, ], quantreg = TRUE)
+pred <- predict(rf, mtcars[27:32, ], type = "quantiles")
+pred$predictions
+
+## Variable importance
+rg.iris <- ranger(Species ~ ., data = iris, importance = "impurity")
+rg.iris$variable.importance
+
+
+reg2_dat %>% 
+  ggplot(aes(x = log_rt, y = group, fill = gender)) + geom_boxplot() + theme_minimal()
+
+reg2_dat %>% # negative means she was slower than they - the effect is the slow down gonig from she to they
+  group_by(participant, gender,group) %>% 
+  summarize(mean_lrt = mean(log_rt)) %>% 
+  pivot_wider(names_from = gender, values_from = mean_lrt) %>% 
+  mutate(effect = she - they) %>% 
+  ggplot(aes(y = participant, x = effect, color = group)) + geom_point()
+
+
+reg2_dat %>% 
+  filter(participant == "ADV_EN_16")
+
+unique(reg2_dat$participant))
+
+for (i in 1:81) {
+  
+}

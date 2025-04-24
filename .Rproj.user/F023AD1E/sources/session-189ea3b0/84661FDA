@@ -1,0 +1,28 @@
+{
+    "id": "84661FDA",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1745496751925.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "id": "3f462c159ebc49c4bad311ed41abce62",
+        "name": "region_mod",
+        "title": "region_mod",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 4323718685,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1745496751925,
+    "read_only": false,
+    "read_only_alternatives": []
+}
