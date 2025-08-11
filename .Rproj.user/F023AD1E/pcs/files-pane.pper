@@ -3,7 +3,15 @@
         {
             "columnIndex": 2,
             "ascending": true
+        },
+        {
+            "columnIndex": 4,
+            "ascending": false
+        },
+        {
+            "columnIndex": 3,
+            "ascending": false
         }
     ],
-    "path": "~/Documents/GitHub/consult_inclusive_they"
+    "path": "~/Documents/GitHub/consult_inclusive_they/data/tidy"
 }

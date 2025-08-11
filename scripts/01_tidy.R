@@ -35,6 +35,15 @@ tidy_spr = function(data)
 
 ## Tidy starts here 
 
+l1_data = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>% 
+  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
+  filter(!is.na(gender)) %>% 
+  filter(experiment == "inclusive_gender_they") %>% 
+  select(participant, sentence, experiment, gender,
+         word1.rt, word2.rt, word3.rt, word4.rt, word5.rt, word6.rt, word7.rt, word8.rt, 
+         word9.rt) %>% 
+  pivot_longer(cols = c(5:13), names_to = "word_position", values_to = "rt") 
+
 
 l1_data = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>% 
   map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
@@ -67,8 +76,10 @@ l2_data_b %>%
 tidy_spr = rbind(l1_data,l2_data_a, l2_data_b)
 
 reg2_dat = tidy_spr %>% 
-  filter(region == "region_2") %>% 
-  write
+  filter(region == "region_2") 
+
+reg2_dat %>% 
+  write.csv(here("data", "tidy", "reg2_data.csv"))
 
 
 bayes_mod = brms::brm(log_rt ~ gender*group + 
