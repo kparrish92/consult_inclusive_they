@@ -17,7 +17,8 @@ eng_l1 = read.csv(here("data", "surveys", "l1_eng_survey.csv")) %>%
          x25_if_the_previous_answer_is_yes_what_percentage_of_that_content_happens_daily,
          x26_when_you_make_social_media_content_how_much_does_that_content_have_to_do_with_inclusive_gender_language_content,
          x29_if_your_answer_to_question_28_is_yes_what_percentage_of_that_content_happens_daily_content,
-         x32_if_your_answer_to_question_30_is_yes_what_percentage_of_that_content_happens_daily_contenido)
+         x32_if_your_answer_to_question_30_is_yes_what_percentage_of_that_content_happens_daily_contenido) %>% 
+  rename("participant" = x1_participant_s_code)
 
 eng_l2 = read.csv(here("data", "surveys", "l2_eng_survey.csv")) %>% 
   janitor::clean_names() %>% 
@@ -33,6 +34,10 @@ eng_l2 = read.csv(here("data", "surveys", "l2_eng_survey.csv")) %>%
          x26_when_you_create_social_media_content_in_english_how_much_of_that_content_has_to_do_with_inclusive_language_in_english_content) %>% 
   rename("participant" = x1_participant_s_code)
 
+
+### Clarify which questions we want on the survey 
+
+### L2 rf data set 
 rf_df = reg2_dat %>% # negative means she was slower than they - the effect is the slow down gonig from she to they
   group_by(participant, gender,group) %>% 
   summarize(mean_lrt = mean(log_rt)) %>% 
@@ -42,53 +47,13 @@ rf_df = reg2_dat %>% # negative means she was slower than they - the effect is t
   filter(group != "L1") %>% 
   write.csv(here("data", "tidy", "l2_survey_tidy.csv"))
 
-reg2_dat %>% 
-  ggplot(aes(x = log_rt, y = group, fill = gender)) + geom_boxplot() + theme_minimal()
+### L1 rf data set 
 
-
-
-
-ranger(effect ~ ., data = rf_df)
-
-## Prediction
-train.idx <- sample(nrow(rf_df), 2/3 * nrow(rf_df))
-iris.train <- rf_df[train.idx, ]
-iris.test <- rf_df[-train.idx, ]
-rg.iris <- ranger(effect ~ ., data = iris.train)
-pred.iris <- predict(rg.iris, data = iris.test)
-table(iris.test$effect, pred.iris$predictions)
-
-## Variable importance
-rg.iris <- ranger(Species ~ ., data = iris, importance = "impurity")
-rg.iris$variable.importance
-
-
-
-
-ranger(effect ~ ., data = rf_df, importance = "impurity")
-
-
-
-
-
-
-
-
-
-reg2_dat %>% # negative means she was slower than they - the effect is the slow down gonig from she to they
+rf_df_l1 = reg2_dat %>% # negative means she was slower than they - the effect is the slow down gonig from she to they
   group_by(participant, gender,group) %>% 
   summarize(mean_lrt = mean(log_rt)) %>% 
   pivot_wider(names_from = gender, values_from = mean_lrt) %>% 
   mutate(effect = she - they) %>% 
-  ggplot(aes(y = participant, x = effect, color = group)) + geom_point()
-
-
-reg2_dat %>% 
-  group_by(participant, gender) %>% 
-  summarise(n = n())
-
-
-reg2_dat %>% 
-  filter(participant == "ADV_EN_16")
-
-
+  left_join(eng_l1, by = "participant") %>% 
+  filter(group == "L1") %>% 
+  write.csv(here("data", "tidy", "l1_survey_tidy.csv"))
