@@ -64,19 +64,25 @@ tidy_spr_word_only = function(data)
     ))
   return(df)
 }
+
+comp_scores = read.csv(here("data", "tidy", "comp_exposure_scores.csv")) %>% 
+  select(-group)
 ```
 
 Big picture:
 
 There was not evidence that inclusive they was considered a violation in any group, but L1 speakers were faster overall than L2 speakers.
 
-
-## Sum of all of region 2 in comparison 
+## Sum of all of region 2 in comparison
 
 **Visualization**:
+
 ```{r, include = FALSE, echo = FALSE}
+
+
+
 l1_data = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>% 
-  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
+  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>%
   tidy_spr() %>% 
   mutate(group = "L1")
 
@@ -92,11 +98,11 @@ l2_data_b = dir_ls(here("data", "spr_data_l2", "BEGINNERS"), regexp = "\\.csv$")
   tidy_spr() %>% 
   mutate(group = "L2_beginner")
 
-tidy_spr = rbind(l1_data,l2_data_a, l2_data_b)
+tidy_spr = rbind(l1_data,l2_data_a, l2_data_b) %>% 
+  left_join(comp_scores, by = "participant")
 ```
 
 ```{r, echo = FALSE}
-tidy_spr = rbind(l1_data,l2_data_a, l2_data_b)
 
 reg2_dat = tidy_spr %>% 
   filter(region == "region_2") 
@@ -105,21 +111,16 @@ reg2_dat %>%
   ggplot(aes(x = log_rt, y = group, fill = gender)) + geom_boxplot() + theme_minimal()
 ```
 
-
 **Model**:
 
-The model was a Bayesian mixed effects linear regression. We would consider there to be compelling evidence of an effect if 95% of the highest density interval does not intersect 0. The model was fit in brms using Markov chain monte carlo sampling across 6 processing cores.
-The model used default priors.
-The outcome variable was log transformed reaction times, and the predictors were gender, group and their interaction. 
-The random effects included a random slope by participant.
+The model was a Bayesian mixed effects linear regression. We would consider there to be compelling evidence of an effect if 95% of the highest density interval does not intersect 0. The model was fit in brms using Markov chain monte carlo sampling across 6 processing cores. The model used default priors. The outcome variable was log transformed reaction times, and the predictors were gender, group and their interaction. The random effects included a random slope by participant.
 
 The results of the model do not suggest that any of the three groups processed the two conditions distinctly (we can see this from the interaction terms and `genderthey` fixed effect).
 
-
 ```{r, echo=FALSE}
-bayes_mod = brms::brm(log_rt ~ gender*group + 
+bayes_mod = brms::brm(log_rt ~ gender*group + composite_score +
                         (gender | participant), data = reg2_dat,
-                      file = here("models", "bayesmod.rds"))
+                      file = here("models", "bayesmod_c.rds"))
 ```
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
@@ -155,7 +156,7 @@ describe_posterior(
   knitr::kable(row.names = FALSE)
 ```
 
-## She vs. they only 
+## She vs. they only
 
 ```{r, include = FALSE, echo = FALSE}
 l1_data_kw = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>% 
@@ -185,7 +186,6 @@ key_word_data = tidy_spr_kw %>%
 key_word_data %>% 
   ggplot(aes(x = log_rt, y = group, fill = gender)) + geom_boxplot() + theme_minimal()
 ```
-
 
 ```{r, echo=FALSE}
 bayes_mod_kw = brms::brm(log_rt ~ gender*group + 

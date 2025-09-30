@@ -43,7 +43,7 @@ rf_df = reg2_dat %>% # negative means she was slower than they - the effect is t
   summarize(mean_lrt = mean(log_rt)) %>% 
   pivot_wider(names_from = gender, values_from = mean_lrt) %>% 
   mutate(effect = she - they) %>% 
-  left_join(eng_l2, by = "participant") %>% 
+  left_join(eng_l2, by =  "participant") %>% 
   filter(group != "L1") %>% 
   write.csv(here("data", "tidy", "l2_survey_tidy.csv"))
 
