@@ -87,7 +87,7 @@ l1_data = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>%
   mutate(group = "L1")
 
 l2_data_a = dir_ls(here("data", "spr_data_l2", "ADVANCED"), regexp = "\\.csv$") %>% 
-  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
+  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>%
   mutate(proficiency = "advanced") %>% 
   tidy_spr() %>% 
   mutate(group = "L2_advanced")
@@ -106,6 +106,9 @@ tidy_spr = rbind(l1_data,l2_data_a, l2_data_b) %>%
 
 reg2_dat = tidy_spr %>% 
   filter(region == "region_2") 
+
+reg2_dat %>% 
+  write.csv(here("data", "tidy", "reg2_data.csv"))
 
 reg2_dat %>% 
   ggplot(aes(x = log_rt, y = group, fill = gender)) + geom_boxplot() + theme_minimal()
