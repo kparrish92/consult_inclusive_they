@@ -69,6 +69,16 @@ ef_long = ef %>%
     value == "over 4 hours" ~ 1
   )) %>% group_by(participant, group) %>% summarise(composite_score = sum(exposure_score))
 
+
+ef_long %>% 
+  group_by(group) %>% 
+  summarize(mean_c = mean(composite_score), sd_c = sd(composite_score))
+
+
+ef_long_l1 %>% 
+  group_by(group) %>% 
+  summarize(mean_c = mean(composite_score), sd_c = sd(composite_score))
+
 ef_long_l1 = ef_l1 %>% 
   select(-x24_do_you_make_content_videos_podcasts_tik_tok_etc_on_social_networks) %>% 
   pivot_longer(cols = 4:13, names_to = "question", values_to = "value") %>% 

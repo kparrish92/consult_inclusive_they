@@ -89,7 +89,32 @@ reg2_dat %>%
   ) +
   theme(axis.text.y = element_blank(),
         axis.ticks = element_blank()) + xlab("Effect: Difference in log-rt") +
-  ylab("Participant") + facet_wrap(~group)
+  ylab("Participant") + facet_wrap(~group) + theme_mi
+
+
+reg2_dat %>% 
+  group_by(participant, gender, group) %>% 
+  summarise(mean_log_rt = mean(log_rt)) %>% 
+  pivot_wider(names_from = gender, values_from = mean_log_rt) %>% 
+  mutate(Effect = they-she) %>%
+  mutate(Effect_hi = Effect + sd_all_data) %>% # positive is she is slower than they, neg she is faster than they
+  mutate(Effect_lo = Effect - sd_all_data) %>% 
+  mutate(Effect_direction = ifelse(Effect > 0, "She is slower", "She is faster")) %>% 
+  group_by(group, Effect_direction) %>% 
+  summarise(n = n())
+
+
+reg2_dat %>% 
+  group_by(participant, gender, group) %>% 
+  summarise(mean_log_rt = mean(log_rt)) %>% 
+  pivot_wider(names_from = gender, values_from = mean_log_rt) %>% 
+  mutate(Effect = they-she) %>%
+  mutate(Effect_hi = Effect + sd_all_data) %>% # positive is she is slower than they, neg she is faster than they
+  mutate(Effect_lo = Effect - sd_all_data) %>% 
+  mutate(Effect_direction = ifelse(Effect > 0, "She is slower", "She is faster")) %>% 
+
+range(c$Effect)  
+  
 
 ggsave(filename = "fig3.png", path = here("plots"), dpi = 1200)
 

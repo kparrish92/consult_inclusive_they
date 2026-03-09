@@ -696,6 +696,232 @@ See help("Deprecated")</code></pre>
 </div>
 </div>
 </section>
+<section id="because-model" class="level2">
+<h2 class="anchored" data-anchor-id="because-model">Because model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>reg1_dat <span class="ot">=</span> tidy_spr <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word_position <span class="sc">==</span> <span class="st">"word4.rt"</span>) </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bayes_mod_r1 <span class="ot">=</span> brms<span class="sc">::</span><span class="fu">brm</span>(log_rt <span class="sc">~</span> gender<span class="sc">*</span>group <span class="sc">+</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                        (gender <span class="sc">|</span> participant), <span class="at">data =</span> reg1_dat,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"models"</span>, <span class="st">"because_mod.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">conditional_effects</span>(bayes_mod_r1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe_posterior</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  bayes_mod_r1,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">effects =</span> <span class="st">"fixed"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">component =</span> <span class="st">"all"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"p_direction"</span>, <span class="st">"p_significance"</span>, <span class="st">"rope"</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">centrality =</span> <span class="st">"all"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), round, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 'xfun::attr()' is deprecated.
+Use 'xfun::attr2()' instead.
+See help("Deprecated")
+
+Warning: 'xfun::attr()' is deprecated.
+Use 'xfun::attr2()' instead.
+See help("Deprecated")</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Component</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">MAP</th>
+<th style="text-align: right;">CI</th>
+<th style="text-align: right;">CI_low</th>
+<th style="text-align: right;">CI_high</th>
+<th style="text-align: right;">pd</th>
+<th style="text-align: right;">ps</th>
+<th style="text-align: right;">ROPE_CI</th>
+<th style="text-align: right;">ROPE_low</th>
+<th style="text-align: right;">ROPE_high</th>
+<th style="text-align: right;">ROPE_Percentage</th>
+<th style="text-align: right;">Rhat</th>
+<th style="text-align: right;">ESS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">b_Intercept</td>
+<td style="text-align: left;">conditional</td>
+<td style="text-align: right;">-1.05</td>
+<td style="text-align: right;">-1.05</td>
+<td style="text-align: right;">-1.03</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-1.15</td>
+<td style="text-align: right;">-0.94</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: right;">920.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b_genderthey</td>
+<td style="text-align: left;">conditional</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">-0.03</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.11</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2604.82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b_groupL2_advanced</td>
+<td style="text-align: left;">conditional</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1002.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b_groupL2_beginner</td>
+<td style="text-align: left;">conditional</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1076.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b_genderthey:groupL2_advanced</td>
+<td style="text-align: left;">conditional</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.08</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2657.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b_genderthey:groupL2_beginner</td>
+<td style="text-align: left;">conditional</td>
+<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.12</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2438.68</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sigma</td>
+<td style="text-align: left;">sigma</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">4430.70</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 
 </main>
 <!-- /main column -->

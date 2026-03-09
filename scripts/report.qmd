@@ -163,7 +163,7 @@ describe_posterior(
 
 ```{r, include = FALSE, echo = FALSE}
 l1_data_kw = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>% 
-  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
+  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>%
   tidy_spr_word_only() %>% 
   mutate(group = "L1")
 
@@ -180,6 +180,9 @@ l2_data_b_kw = dir_ls(here("data", "spr_data_l2", "BEGINNERS"), regexp = "\\.csv
   mutate(group = "L2_beginner")
 
 tidy_spr_kw = rbind(l1_data_kw,l2_data_a_kw, l2_data_b_kw)
+
+tidy_spr_kw %>% 
+   write.csv(here("data", "tidy", "word_only_data.csv"))
 ```
 
 ```{r, echo = FALSE}
@@ -228,3 +231,33 @@ describe_posterior(
   mutate(across(where(is.numeric), round, 2)) %>% 
   knitr::kable(row.names = FALSE)
 ```
+
+## Because model 
+
+```{r}
+reg1_dat = tidy_spr %>% 
+  filter(word_position == "word4.rt") 
+
+bayes_mod_r1 = brms::brm(log_rt ~ gender*group + 
+                        (gender | participant), data = reg1_dat,
+                      file = here("models", "because_mod.rds"))
+```
+
+```{r}
+brms::conditional_effects(bayes_mod_r1)
+
+```
+
+```{r}
+describe_posterior(
+  bayes_mod_r1,
+  effects = "fixed",
+  component = "all",
+  test = c("p_direction", "p_significance", "rope"),
+  centrality = "all"
+) %>%
+  as.data.frame() %>% 
+  mutate(across(where(is.numeric), round, 2)) %>% 
+  knitr::kable(row.names = FALSE)
+```
+
