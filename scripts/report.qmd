@@ -80,7 +80,6 @@ There was not evidence that inclusive they was considered a violation in any gro
 ```{r, include = FALSE, echo = FALSE}
 
 
-
 l1_data = dir_ls(here("data", "spr_data_l1"), regexp = "\\.csv$") %>% 
   map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>%
   tidy_spr() %>% 
@@ -92,13 +91,7 @@ l2_data_a = dir_ls(here("data", "spr_data_l2", "ADVANCED"), regexp = "\\.csv$") 
   tidy_spr() %>% 
   mutate(group = "L2_advanced")
 
-l2_data_b = dir_ls(here("data", "spr_data_l2", "BEGINNERS"), regexp = "\\.csv$") %>% 
-  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
-  mutate(proficiency = "beginner") %>% 
-  tidy_spr() %>% 
-  mutate(group = "L2_beginner")
-
-tidy_spr = rbind(l1_data,l2_data_a, l2_data_b) %>% 
+tidy_spr = rbind(l1_data,l2_data_a) %>% 
   left_join(comp_scores, by = "participant")
 ```
 
@@ -140,9 +133,7 @@ library(bayesplot)
 mcmc_areas(posterior,
            pars = c("b_genderthey", 
                     "b_groupL2_advanced",
-                    "b_groupL2_beginner",
-                    "b_genderthey:groupL2_advanced",
-                    "b_genderthey:groupL2_beginner"),
+                    "b_genderthey:groupL2_advanced"),
            prob = 0.8) + plot_title + theme_minimal()
 ```
 
@@ -173,13 +164,7 @@ l2_data_a_kw = dir_ls(here("data", "spr_data_l2", "ADVANCED"), regexp = "\\.csv$
   tidy_spr_word_only() %>% 
   mutate(group = "L2_advanced")
 
-l2_data_b_kw = dir_ls(here("data", "spr_data_l2", "BEGINNERS"), regexp = "\\.csv$") %>% 
-  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
-  mutate(proficiency = "beginner") %>% 
-  tidy_spr_word_only() %>% 
-  mutate(group = "L2_beginner")
-
-tidy_spr_kw = rbind(l1_data_kw,l2_data_a_kw, l2_data_b_kw)
+tidy_spr_kw = rbind(l1_data_kw,l2_data_a_kw)
 
 tidy_spr_kw %>% 
    write.csv(here("data", "tidy", "word_only_data.csv"))
@@ -213,9 +198,7 @@ library(bayesplot)
 mcmc_areas(bayes_mod_kw,
            pars = c("b_genderthey", 
                     "b_groupL2_advanced",
-                    "b_groupL2_beginner",
-                    "b_genderthey:groupL2_advanced",
-                    "b_genderthey:groupL2_beginner"),
+                    "b_genderthey:groupL2_advanced"),
            prob = 0.8) + plot_title + theme_minimal()
 ```
 
@@ -232,7 +215,7 @@ describe_posterior(
   knitr::kable(row.names = FALSE)
 ```
 
-## Because model 
+## Because model
 
 ```{r}
 reg1_dat = tidy_spr %>% 
@@ -260,4 +243,3 @@ describe_posterior(
   mutate(across(where(is.numeric), round, 2)) %>% 
   knitr::kable(row.names = FALSE)
 ```
-

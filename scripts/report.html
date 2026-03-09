@@ -148,42 +148,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code> Family: gaussian 
   Links: mu = identity; sigma = identity 
 Formula: log_rt ~ gender * group + composite_score + (gender | participant) 
-   Data: reg2_dat (Number of observations: 4693) 
+   Data: reg2_dat (Number of observations: 2873) 
   Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
          total post-warmup draws = 4000
 
 Multilevel Hyperparameters:
-~participant (Number of levels: 81) 
+~participant (Number of levels: 52) 
                           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-sd(Intercept)                 0.25      0.02     0.21     0.29 1.00     1106
-sd(genderthey)                0.09      0.01     0.06     0.12 1.00     1592
-cor(Intercept,genderthey)    -0.19      0.16    -0.49     0.13 1.00     3255
+sd(Intercept)                 0.23      0.03     0.19     0.29 1.01     1040
+sd(genderthey)                0.08      0.02     0.05     0.11 1.00     1746
+cor(Intercept,genderthey)     0.00      0.20    -0.37     0.40 1.00     2932
                           Tail_ESS
-sd(Intercept)                 1614
-sd(genderthey)                2469
-cor(Intercept,genderthey)     3216
+sd(Intercept)                 1194
+sd(genderthey)                2450
+cor(Intercept,genderthey)     2743
 
 Regression Coefficients:
                             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-Intercept                      -1.08      0.06    -1.20    -0.96 1.00      898
-genderthey                     -0.02      0.02    -0.06     0.03 1.00     2521
-groupL2_advanced                0.26      0.06     0.13     0.39 1.00      805
-groupL2_beginner                0.25      0.06     0.12     0.37 1.00      821
-composite_score                 0.00      0.02    -0.04     0.04 1.00     1125
-genderthey:groupL2_advanced     0.05      0.03    -0.02     0.12 1.00     2526
-genderthey:groupL2_beginner     0.02      0.03    -0.04     0.09 1.00     2694
+Intercept                      -1.06      0.07    -1.21    -0.92 1.00      928
+genderthey                     -0.02      0.02    -0.06     0.02 1.00     3208
+groupL2_advanced                0.31      0.07     0.17     0.45 1.00      966
+composite_score                -0.01      0.03    -0.06     0.04 1.00     1221
+genderthey:groupL2_advanced     0.05      0.03    -0.01     0.11 1.00     2843
                             Tail_ESS
-Intercept                       1569
-genderthey                      2748
-groupL2_advanced                1452
-groupL2_beginner                1570
-composite_score                 1502
-genderthey:groupL2_advanced     2530
-genderthey:groupL2_beginner     2593
+Intercept                       1340
+genderthey                      2866
+groupL2_advanced                1640
+composite_score                 1615
+genderthey:groupL2_advanced     2810
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.31      0.00     0.30     0.32 1.00     6519     3181
+sigma     0.28      0.00     0.28     0.29 1.00     6758     3064
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -274,12 +270,12 @@ See help("Deprecated")</code></pre>
 <tr class="odd">
 <td style="text-align: left;">b_Intercept</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">-1.08</td>
-<td style="text-align: right;">-1.08</td>
-<td style="text-align: right;">-1.07</td>
+<td style="text-align: right;">-1.06</td>
+<td style="text-align: right;">-1.06</td>
+<td style="text-align: right;">-1.06</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-1.20</td>
-<td style="text-align: right;">-0.96</td>
+<td style="text-align: right;">-1.21</td>
+<td style="text-align: right;">-0.92</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
@@ -287,35 +283,35 @@ See help("Deprecated")</code></pre>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">875.87</td>
+<td style="text-align: right;">884.91</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">b_genderthey</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">-0.02</td>
 <td style="text-align: right;">-0.02</td>
 <td style="text-align: right;">-0.02</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.06</td>
-<td style="text-align: right;">0.03</td>
-<td style="text-align: right;">0.74</td>
-<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.15</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">0.87</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">2518.01</td>
+<td style="text-align: right;">3191.78</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">b_groupL2_advanced</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.31</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.13</td>
-<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.45</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
@@ -323,89 +319,53 @@ See help("Deprecated")</code></pre>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">794.05</td>
+<td style="text-align: right;">952.10</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">b_groupL2_beginner</td>
-<td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.37</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">808.85</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">b_composite_score</td>
 <td style="text-align: left;">conditional</td>
+<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">-0.01</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.09</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.57</td>
-<td style="text-align: right;">0.03</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.91</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">1116.95</td>
+<td style="text-align: right;">1214.53</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">b_genderthey:groupL2_advanced</td>
 <td style="text-align: left;">conditional</td>
 <td style="text-align: right;">0.05</td>
 <td style="text-align: right;">0.05</td>
 <td style="text-align: right;">0.06</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.62</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.38</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">2495.14</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">b_genderthey:groupL2_beginner</td>
-<td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.75</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.71</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2671.84</td>
+<td style="text-align: right;">2812.89</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">sigma</td>
 <td style="text-align: left;">sigma</td>
-<td style="text-align: right;">0.31</td>
-<td style="text-align: right;">0.31</td>
-<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.28</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.29</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
@@ -413,7 +373,7 @@ See help("Deprecated")</code></pre>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">6550.75</td>
+<td style="text-align: right;">6670.75</td>
 </tr>
 </tbody>
 </table>
@@ -457,40 +417,36 @@ See help("Deprecated")</code></pre>
 <pre><code> Family: gaussian 
   Links: mu = identity; sigma = identity 
 Formula: log_rt ~ gender * group + (gender | participant) 
-   Data: key_word_data (Number of observations: 1122) 
+   Data: key_word_data (Number of observations: 708) 
   Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
          total post-warmup draws = 4000
 
 Multilevel Hyperparameters:
-~participant (Number of levels: 79) 
+~participant (Number of levels: 51) 
                           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-sd(Intercept)                 0.23      0.02     0.18     0.28 1.00     1263
-sd(genderthey)                0.04      0.03     0.00     0.10 1.00      806
-cor(Intercept,genderthey)     0.06      0.48    -0.86     0.92 1.00     4261
+sd(Intercept)                 0.24      0.03     0.19     0.30 1.00      758
+sd(genderthey)                0.04      0.03     0.00     0.11 1.01      804
+cor(Intercept,genderthey)     0.06      0.49    -0.88     0.91 1.00     2709
                           Tail_ESS
-sd(Intercept)                 2152
-sd(genderthey)                1258
-cor(Intercept,genderthey)     2412
+sd(Intercept)                 1352
+sd(genderthey)                1216
+cor(Intercept,genderthey)     1836
 
 Regression Coefficients:
                             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-Intercept                      -1.08      0.05    -1.17    -0.98 1.00     1258
-genderthey                     -0.02      0.04    -0.09     0.05 1.00     3141
-groupL2_advanced                0.32      0.07     0.18     0.46 1.01     1101
-groupL2_beginner                0.26      0.07     0.12     0.39 1.00     1389
-genderthey:groupL2_advanced     0.07      0.05    -0.03     0.17 1.00     3285
-genderthey:groupL2_beginner     0.02      0.05    -0.08     0.12 1.00     3562
+Intercept                      -1.08      0.05    -1.17    -0.98 1.00      533
+genderthey                     -0.02      0.03    -0.08     0.05 1.00     2192
+groupL2_advanced                0.35      0.07     0.21     0.50 1.00      584
+genderthey:groupL2_advanced     0.05      0.05    -0.04     0.14 1.00     2198
                             Tail_ESS
-Intercept                       1999
-genderthey                      2767
-groupL2_advanced                1825
-groupL2_beginner                2181
-genderthey:groupL2_advanced     2968
-genderthey:groupL2_beginner     2901
+Intercept                        985
+genderthey                      2105
+groupL2_advanced                1046
+genderthey:groupL2_advanced     2606
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.32      0.01     0.31     0.34 1.00     4655     2492
+sigma     0.29      0.01     0.28     0.31 1.00     3752     2662
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -570,7 +526,7 @@ See help("Deprecated")</code></pre>
 <td style="text-align: left;">conditional</td>
 <td style="text-align: right;">-1.08</td>
 <td style="text-align: right;">-1.08</td>
-<td style="text-align: right;">-1.08</td>
+<td style="text-align: right;">-1.07</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-1.17</td>
 <td style="text-align: right;">-0.98</td>
@@ -580,8 +536,8 @@ See help("Deprecated")</code></pre>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1265.56</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">527.88</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">b_genderthey</td>
@@ -590,106 +546,70 @@ See help("Deprecated")</code></pre>
 <td style="text-align: right;">-0.02</td>
 <td style="text-align: right;">-0.02</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.09</td>
+<td style="text-align: right;">-0.08</td>
 <td style="text-align: right;">0.05</td>
-<td style="text-align: right;">0.69</td>
-<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.22</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">3124.64</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2157.87</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">b_groupL2_advanced</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.36</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.21</td>
+<td style="text-align: right;">0.50</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.01</td>
-<td style="text-align: right;">1108.38</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">579.39</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">b_groupL2_beginner</td>
-<td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1391.21</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">b_genderthey:groupL2_advanced</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.03</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">0.93</td>
-<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.57</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">3258.41</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">b_genderthey:groupL2_beginner</td>
-<td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.08</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.67</td>
-<td style="text-align: right;">0.34</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.59</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">3583.46</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2190.36</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">sigma</td>
 <td style="text-align: left;">sigma</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.30</td>
 <td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.28</td>
 <td style="text-align: right;">0.31</td>
-<td style="text-align: right;">0.34</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">4629.27</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3700.73</td>
 </tr>
 </tbody>
 </table>
@@ -705,9 +625,135 @@ See help("Deprecated")</code></pre>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bayes_mod_r1 <span class="ot">=</span> brms<span class="sc">::</span><span class="fu">brm</span>(log_rt <span class="sc">~</span> gender<span class="sc">*</span>group <span class="sc">+</span> </span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                        (gender <span class="sc">|</span> participant), <span class="at">data =</span> reg1_dat,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"models"</span>, <span class="st">"because_mod.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Compiling Stan program...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Trying to compile a simple C file</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
+using C compiler: ‘Apple clang version 14.0.0 (clang-1400.0.29.202)’
+using SDK: ‘MacOSX13.1.sdk’
+clang -arch arm64 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG   -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include/"  -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppEigen/include/"  -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppEigen/include/unsupported"  -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/BH/include" -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/StanHeaders/include/src/"  -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/StanHeaders/include/"  -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include/"  -I"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/rstan/include" -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DUSE_STANC3 -DSTRICT_R_HEADERS  -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION  -D_HAS_AUTO_PTR_ETC=0  -include '/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/StanHeaders/include/stan/math/prim/fun/Eigen.hpp'  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1   -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c foo.c -o foo.o
+In file included from &lt;built-in&gt;:1:
+In file included from /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/StanHeaders/include/stan/math/prim/fun/Eigen.hpp:22:
+In file included from /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+In file included from /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppEigen/include/Eigen/Core:19:
+/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:679:10: fatal error: 'cmath' file not found
+#include &lt;cmath&gt;
+         ^~~~~~~
+1 error generated.
+make: *** [foo.o] Error 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Start sampling</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
+Chain 1: 
+Chain 1: Gradient evaluation took 0.000123 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.23 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 2.525 seconds (Warm-up)
+Chain 1:                0.805 seconds (Sampling)
+Chain 1:                3.33 seconds (Total)
+Chain 1: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
+Chain 2: 
+Chain 2: Gradient evaluation took 5.2e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.52 seconds.
+Chain 2: Adjust your expectations accordingly!
+Chain 2: 
+Chain 2: 
+Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 2.621 seconds (Warm-up)
+Chain 2:                0.782 seconds (Sampling)
+Chain 2:                3.403 seconds (Total)
+Chain 2: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
+Chain 3: 
+Chain 3: Gradient evaluation took 4.5e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.45 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 2.354 seconds (Warm-up)
+Chain 3:                1.456 seconds (Sampling)
+Chain 3:                3.81 seconds (Total)
+Chain 3: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
+Chain 4: 
+Chain 4: Gradient evaluation took 4.7e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.47 seconds.
+Chain 4: Adjust your expectations accordingly!
+Chain 4: 
+Chain 4: 
+Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 2.206 seconds (Warm-up)
+Chain 4:                1.18 seconds (Sampling)
+Chain 4:                3.386 seconds (Total)
+Chain 4: </code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">conditional_effects</span>(bayes_mod_r1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">conditional_effects</span>(bayes_mod_r1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -731,16 +777,16 @@ See help("Deprecated")</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe_posterior</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  bayes_mod_r1,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">effects =</span> <span class="st">"fixed"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">component =</span> <span class="st">"all"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"p_direction"</span>, <span class="st">"p_significance"</span>, <span class="st">"rope"</span>),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">centrality =</span> <span class="st">"all"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), round, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe_posterior</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  bayes_mod_r1,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">effects =</span> <span class="st">"fixed"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">component =</span> <span class="st">"all"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"p_direction"</span>, <span class="st">"p_significance"</span>, <span class="st">"rope"</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">centrality =</span> <span class="st">"all"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), round, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: 'xfun::attr()' is deprecated.
 Use 'xfun::attr2()' instead.
@@ -794,9 +840,9 @@ See help("Deprecated")</code></pre>
 <tr class="odd">
 <td style="text-align: left;">b_Intercept</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">-1.05</td>
-<td style="text-align: right;">-1.05</td>
-<td style="text-align: right;">-1.03</td>
+<td style="text-align: right;">-1.04</td>
+<td style="text-align: right;">-1.04</td>
+<td style="text-align: right;">-1.04</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-1.15</td>
 <td style="text-align: right;">-0.94</td>
@@ -806,116 +852,80 @@ See help("Deprecated")</code></pre>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.01</td>
-<td style="text-align: right;">920.32</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">853.90</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">b_genderthey</td>
 <td style="text-align: left;">conditional</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">-0.03</td>
+<td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.11</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.84</td>
-<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.45</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.57</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">2604.82</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3288.05</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">b_groupL2_advanced</td>
 <td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.41</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.23</td>
-<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.56</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1002.03</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">840.77</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">b_groupL2_beginner</td>
-<td style="text-align: left;">conditional</td>
-<td style="text-align: right;">0.33</td>
-<td style="text-align: right;">0.33</td>
-<td style="text-align: right;">0.33</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1076.67</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">b_genderthey:groupL2_advanced</td>
 <td style="text-align: left;">conditional</td>
 <td style="text-align: right;">0.03</td>
 <td style="text-align: right;">0.03</td>
-<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.03</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.08</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">0.70</td>
-<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">-0.07</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.42</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.55</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">2657.04</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">b_genderthey:groupL2_beginner</td>
-<td style="text-align: left;">conditional</td>
-<td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">-0.02</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.12</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.66</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.95</td>
-<td style="text-align: right;">-0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.60</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">2438.68</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3083.36</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">sigma</td>
 <td style="text-align: left;">sigma</td>
-<td style="text-align: right;">0.34</td>
-<td style="text-align: right;">0.34</td>
-<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.31</td>
 <td style="text-align: right;">0.95</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.33</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.95</td>
 <td style="text-align: right;">-0.04</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">4430.70</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4526.35</td>
 </tr>
 </tbody>
 </table>

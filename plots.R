@@ -89,7 +89,7 @@ reg2_dat %>%
   ) +
   theme(axis.text.y = element_blank(),
         axis.ticks = element_blank()) + xlab("Effect: Difference in log-rt") +
-  ylab("Participant") + facet_wrap(~group) + theme_mi
+  ylab("Participant") + facet_wrap(~group) + theme_minimal()
 
 
 reg2_dat %>% 

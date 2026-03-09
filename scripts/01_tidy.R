@@ -56,13 +56,7 @@ l2_data_a = dir_ls(here("data", "spr_data_l2", "ADVANCED"), regexp = "\\.csv$") 
   tidy_spr() %>% 
   mutate(group = "L2_advanced")
 
-l2_data_b = dir_ls(here("data", "spr_data_l2", "BEGINNERS"), regexp = "\\.csv$") %>% 
-  map_dfr(read_csv, .id = "source", col_types = cols(.default = "c")) %>% 
-  mutate(proficiency = "beginner") %>% 
-  tidy_spr() %>% 
-  mutate(group = "L2_beginner")
-
-tidy_spr = rbind(l1_data,l2_data_a, l2_data_b)
+tidy_spr = rbind(l1_data,l2_data_a)
 
 l1_data %>% 
   ggplot(aes(x = rt, y = region, fill = gender)) + geom_boxplot()
@@ -70,10 +64,7 @@ l1_data %>%
 l2_data_a %>% 
   ggplot(aes(x = rt, y = region, fill = gender)) + geom_boxplot()
 
-l2_data_b %>% 
-  ggplot(aes(x = rt, y = region, fill = gender)) + geom_boxplot()
-
-tidy_spr = rbind(l1_data,l2_data_a, l2_data_b)
+tidy_spr = rbind(l1_data,l2_data_a)
 
 reg2_dat = tidy_spr %>% 
   filter(region == "region_2") 
@@ -100,7 +91,5 @@ library(bayesplot)
 mcmc_areas(posterior,
            pars = c("b_genderthey", 
                     "b_groupL2_advanced",
-                    "b_groupL2_beginner",
-                    "b_genderthey:groupL2_advanced",
-                    "b_genderthey:groupL2_beginner"),
+                    "b_genderthey:groupL2_advanced"),
            prob = 0.8) + plot_title + theme_minimal()

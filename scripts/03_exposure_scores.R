@@ -48,12 +48,6 @@ ef_l1[ef_l1 == "nada"] <- "none"
 ef_l1[ef_l1 == "none"] <- "0"
 
 
-
-
-
-
-  
-
 ef_long = ef %>% 
   pivot_longer(cols = 4:12, names_to = "question", values_to = "value") %>% 
   mutate(exposure_score = case_when(
@@ -74,11 +68,6 @@ ef_long %>%
   group_by(group) %>% 
   summarize(mean_c = mean(composite_score), sd_c = sd(composite_score))
 
-
-ef_long_l1 %>% 
-  group_by(group) %>% 
-  summarize(mean_c = mean(composite_score), sd_c = sd(composite_score))
-
 ef_long_l1 = ef_l1 %>% 
   select(-x24_do_you_make_content_videos_podcasts_tik_tok_etc_on_social_networks) %>% 
   pivot_longer(cols = 4:13, names_to = "question", values_to = "value") %>% 
@@ -96,77 +85,14 @@ ef_long_l1 = ef_l1 %>%
     value == "more than 4 hours" ~ 1
   )) %>% group_by(participant, group) %>% summarise(composite_score = sum(exposure_score))
 
+
+ef_long_l1 %>% 
+  group_by(group) %>% 
+  summarize(mean_c = mean(composite_score), sd_c = sd(composite_score))
+
 comp_score_df = rbind(ef_long_l1,ef_long)
 
 comp_score_df %>% 
   write.csv(here("data", "tidy", "comp_exposure_scores.csv"))
 
 ## survey question models 
-
-long_ef = ef %>% 
-  pivot_longer(cols = 4:12, names_to = "question", values_to = "answer")
-
-i = 9
-qs = unique(long_ef$question)
-
-df = long_ef %>% 
-  filter(question == qs[3] | question == qs[9])
-
-model = lm(effect ~ answer, data = df)
-
-summary(model)
-
-# half an hour .25
-# between 1 or 2 hours .5
-# between 2 or 3 hours .75
-# over 4 hours 1
-
-# 10 .1
-# 25 .25
-# 50 .5
-# 75 .75
-# 1 1
-
-
-long_ef_l1 %>% 
-  ggplot(aes(x = effect, y = answer)) + geom_boxplot() + 
-  facet_wrap(~question)
-
-long_ef_l1 = ef_l1 %>% 
-  pivot_longer(cols = 4:14, names_to = "question", values_to = "answer")
-
-it = 11
-qs_l1 = unique(long_ef_l1$question)
-
-df_l1 = long_ef_l1 %>% 
-  filter(question == qs_l1[it])
-
-model_l1 = lm(effect ~ answer, data = df_l1)
-
-summary(model_l1)
-
-
-ef %>% 
-  ggplot(aes(x = effect, y = x24_wh)) + geom_boxplot()
-
-
-ef %>% 
-  ggplot(aes(x = effect, y = x14_if)) + geom_boxplot()
-
-ef %>% 
-  ggplot(aes(x = effect, y = x16_if)) + geom_boxplot()
-
-ef %>% 
-  ggplot(aes(x = effect, y = x18_if)) + geom_boxplot()
-
-ef %>% 
-  ggplot(aes(x = effect, y = x20_si)) + geom_boxplot()
-
-
-ef %>% 
-  ggplot(aes(x = effect, y = x22_if)) + geom_boxplot()
-
-
-ef %>% 
-  ggplot(aes(x = effect, y = group)) + geom_boxplot()
-
