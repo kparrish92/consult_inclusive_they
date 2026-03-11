@@ -32,6 +32,9 @@ tidy_spr = function(data)
   return(df)
 }
 
+length(unique(l1_data$participant))
+length(unique(l2_data_a$participant))
+
 
 ## Tidy starts here 
 
@@ -71,25 +74,3 @@ reg2_dat = tidy_spr %>%
 
 reg2_dat %>% 
   write.csv(here("data", "tidy", "reg2_data.csv"))
-
-
-bayes_mod = brms::brm(log_rt ~ gender*group + 
-                        (gender | participant), data = reg2_dat,
-                      file = here("models", "bayesmod.rds"))
-
-
-brms::conditional_effects(bayes_mod)
-
-summary(bayes_mod)
-
-posterior<- as.matrix(bayes_mod)
-
-plot_title <- ggtitle("Posterior distributions",
-                      "with medians and 80% intervals")
-
-library(bayesplot)
-mcmc_areas(posterior,
-           pars = c("b_genderthey", 
-                    "b_groupL2_advanced",
-                    "b_genderthey:groupL2_advanced"),
-           prob = 0.8) + plot_title + theme_minimal()
