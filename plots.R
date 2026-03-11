@@ -111,10 +111,9 @@ reg2_dat %>%
   mutate(Effect = they-she) %>%
   mutate(Effect_hi = Effect + sd_all_data) %>% # positive is she is slower than they, neg she is faster than they
   mutate(Effect_lo = Effect - sd_all_data) %>% 
-  mutate(Effect_direction = ifelse(Effect > 0, "She is slower", "She is faster")) %>% 
+  mutate(Effect_direction = ifelse(Effect > 0, "She is slower", "She is faster"))
 
-range(c$Effect)  
-  
+
 
 ggsave(filename = "fig3.png", path = here("plots"), dpi = 1200)
 
